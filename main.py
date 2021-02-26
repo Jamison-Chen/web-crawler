@@ -13,8 +13,7 @@ app = Flask(__name__)
 def fetchWiki(url):
     resp = requests.get(url)
     doc = pq(resp.text)
-    return json.dumps({"body": doc.children("body")})
-    # return json.dumps({"body": "hi"})
+    return doc.children("body").html()
 
 
 # fetchWiki("https://en.wikipedia.org/wiki/NP-completeness")
@@ -30,8 +29,8 @@ def home():
     return resp
 
 
-@app.route("/getUserInfo", methods=['GET'])
-def getUserInfo():
+@app.route("/fetchContent", methods=['GET'])
+def fetchContent():
     url = str(flaskRq.args.get("url"))
     try:
         resp = Response(response={fetchWiki(url)}, headers={
@@ -42,8 +41,7 @@ def getUserInfo():
 
 
 if __name__ == "__main__":
-    # app.run()
-    pass
+    app.run()
 
 
 # git add .
