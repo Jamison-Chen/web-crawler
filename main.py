@@ -13,7 +13,7 @@ app = Flask(__name__)
 def fetchWiki(url):
     resp = requests.get(url)
     doc = pq(resp.text)
-    return doc.children("body").html()
+    return json.dumps({"body": doc.children("body").html()})
 
 
 # fetchWiki("https://en.wikipedia.org/wiki/NP-completeness")
@@ -33,15 +33,15 @@ def home():
 def fetchContent():
     url = str(flaskRq.args.get("url"))
     try:
-        resp = Response(response={fetchWiki(url)}, headers={
+        resp = Response(response=fetchWiki(url), headers={
                         'Access-Control-Allow-Origin': "*"})
     except Exception as e:
         resp = "Helloooo"
     return resp
 
 
-if __name__ == "__main__":
-    app.run()
+# if __name__ == "__main__":
+#     app.run()
 
 
 # git add .
