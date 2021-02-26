@@ -2,6 +2,7 @@ from flask import Flask, url_for, redirect, Response
 # from flask import request as flaskRq
 import requests
 from pyquery import PyQuery as pq
+import json
 # import random
 # import csv
 # import time
@@ -12,7 +13,8 @@ app = Flask(__name__)
 def fetchWiki(url):
     resp = requests.get(url)
     doc = pq(resp.text)
-    return {"body": doc.children("body")}
+    # return json.dumps({"body": doc.children("body")})
+    return json.dumps({"body": "hi"})
 
 
 # fetchWiki("https://en.wikipedia.org/wiki/NP-completeness")
@@ -21,7 +23,7 @@ def fetchWiki(url):
 @app.route("/")
 def home():
     try:
-        resp = Response(response={"ABC": "abc"}, headers={
+        resp = Response(response={"DEF"}, headers={
                         'Access-Control-Allow-Origin': "*"})
     except Exception as e:
         resp = "Helloooo"
