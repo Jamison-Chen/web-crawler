@@ -13,10 +13,10 @@ app = Flask(__name__)
 def fetchWiki(url):
     resp = requests.get(url)
     doc = pq(resp.text)
-    return json.dumps({"body": doc.children("body").html()})
+    return json.dumps({"body": doc.find("body").html()})
 
 
-# fetchWiki("https://en.wikipedia.org/wiki/NP-completeness")
+# print(fetchWiki("https://en.wikipedia.org/wiki/NP-completeness"))
 
 
 @app.route("/")
