@@ -3,10 +3,6 @@ from flask import request as flaskRq
 import requests
 from pyquery import PyQuery as pq
 import json
-# import random
-# import csv
-# import time
-# import re
 app = Flask(__name__)
 
 
@@ -14,9 +10,6 @@ def fetchWiki(url):
     resp = requests.get(url)
     doc = pq(resp.text)
     return json.dumps({"body": doc.find("body").html()})
-
-
-# print(fetchWiki("https://en.wikipedia.org/wiki/NP-completeness"))
 
 
 @app.route("/")
@@ -42,8 +35,3 @@ def fetchContent():
 
 if __name__ == "__main__":
     app.run()
-
-
-# git add .
-# git commit -m "..."
-# git push heroku master
