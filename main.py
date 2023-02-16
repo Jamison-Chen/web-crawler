@@ -3,6 +3,7 @@ from flask import request as flaskRq
 import requests
 from pyquery import PyQuery as pq
 import json
+
 app = Flask(__name__)
 
 
@@ -15,21 +16,23 @@ def fetchWiki(url):
 @app.route("/")
 def home():
     try:
-        resp = Response(response={"Hello"}, headers={
-                        'Access-Control-Allow-Origin': "*"})
+        resp = Response(
+            response={"Hello"}, headers={"Access-Control-Allow-Origin": "*"}
+        )
     except Exception as e:
-        resp = "Helloooo"
+        resp = "Failed To Fetch"
     return resp
 
 
-@app.route("/fetchContent", methods=['GET'])
+@app.route("/fetchContent", methods=["GET"])
 def fetchContent():
     url = str(flaskRq.args.get("url"))
     try:
-        resp = Response(response=fetchWiki(url), headers={
-                        'Access-Control-Allow-Origin': "*"})
+        resp = Response(
+            response=fetchWiki(url), headers={"Access-Control-Allow-Origin": "*"}
+        )
     except Exception as e:
-        resp = "Helloooo"
+        resp = "Failed To Fetch"
     return resp
 
 
