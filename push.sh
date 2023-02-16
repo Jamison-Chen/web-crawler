@@ -11,5 +11,4 @@ else
     ssh-add -D
     ssh-add ~/.ssh/id_rsa
     git push -u origin master
-    npm run deploy
 fi
