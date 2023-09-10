@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-flask = "==2.3.3"
+flask = "==2.2.5"
 requests = "==2.31.0"
 pyquery = "*"
 gunicorn = "==21.2.0"
