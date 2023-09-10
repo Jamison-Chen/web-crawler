@@ -1,8 +1,9 @@
-from flask import Flask, url_for, redirect, Response
-from flask import request as flaskRq
-import requests
-from pyquery import PyQuery as pq
 import json
+
+import requests
+from flask import Flask, Response
+from flask import request as flaskRq
+from pyquery import PyQuery as pq
 
 app = Flask(__name__)
 
@@ -14,12 +15,12 @@ def fetchWiki(url):
 
 
 @app.route("/")
-def home():
+def index():
     try:
         resp = Response(
             response={"Hello"}, headers={"Access-Control-Allow-Origin": "*"}
         )
-    except Exception as e:
+    except Exception:
         resp = "Failed To Fetch"
     return resp
 
@@ -31,7 +32,7 @@ def fetchContent():
         resp = Response(
             response=fetchWiki(url), headers={"Access-Control-Allow-Origin": "*"}
         )
-    except Exception as e:
+    except Exception:
         resp = "Failed To Fetch"
     return resp
 
